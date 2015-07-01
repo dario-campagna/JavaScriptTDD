@@ -4,5 +4,5 @@ node_modules
 app/build
 app/src/*.js
 app/src/*.js.map
-app/test/*.js
-app/test/*.js.map
+test/**/*.spec.js
+test/**/*.spec.js.map

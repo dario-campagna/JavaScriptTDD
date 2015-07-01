@@ -1,12 +1,14 @@
-var gulp   = require('gulp');
-var tsc    = require('gulp-tsc');
-var shell  = require('gulp-shell');
+var gulp = require('gulp');
+var ts = require('gulp-typescript');
+var shell = require('gulp-shell');
 var runseq = require('run-sequence');
 var tslint = require('gulp-tslint');
 
 var paths = {
-  tscripts : { src : ['app/src/**/*.ts'],
-        dest : 'app/build' }
+  tscripts: {
+    src: ['app/src/**/*.ts'],
+    dest: 'app/build'
+  }
 };
 
 gulp.task('default', ['lint', 'buildrun']);
@@ -35,24 +37,23 @@ gulp.task('watchrun', function () {
 
 gulp.task('build', ['compile:typescript']);
 gulp.task('compile:typescript', function () {
-  return gulp
-  .src(paths.tscripts.src)
-  .pipe(tsc({
-    module: "commonjs",
-    emitError: false
-  }))
-  .pipe(gulp.dest(paths.tscripts.dest));
+  var tsResult = gulp.src(paths.tscripts.src)
+    .pipe(ts({
+      noImplicitAny: true,
+      out: 'index.js'
+    }));
+  return tsResult.js.pipe(gulp.dest(paths.tscripts.dest));
 });
 
 // ** Linting ** //
 
 gulp.task('lint', ['lint:default']);
-gulp.task('lint:default', function(){
-      return gulp.src(paths.tscripts.src)
-        .pipe(tslint())
-        .pipe(tslint.report('prose', {
-          emitError: false
-        }));
+gulp.task('lint:default', function () {
+  return gulp.src(paths.tscripts.src)
+    .pipe(tslint())
+    .pipe(tslint.report('prose', {
+      emitError: false
+    }));
 });
 
 // ** Testing ** //

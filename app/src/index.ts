@@ -1,3 +1,5 @@
 ///<reference path="fizzBuzz.ts"/>
 
-var greeter = new FizzBuzz.FizzBuzzer();
+var fizzBuzzer = new FizzBuzz.FizzBuzzer([new FizzBuzz.DefaultRule()]);
+
+console.log(fizzBuzzer.say(1));
