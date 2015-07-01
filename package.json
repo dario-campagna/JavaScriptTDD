@@ -1,5 +1,5 @@
 {
-  "name": "TypeScriptTDD",
+  "name": "es6TDD",
   "version": "0.0.0",
   "author": "",
   "main": "app/build/index.js",
@@ -23,7 +23,6 @@
     "watchify": "^3.2.3"
   },
   "scripts": {
-    "main": "gulp buildrun",
     "test": "gulp karma"
   }
 }

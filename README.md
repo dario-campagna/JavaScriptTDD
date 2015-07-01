@@ -1,6 +1,6 @@
-# TypeScriptTDD
+# ES6 TDD
 
-TypeScript project for experimenting with TDD.
+ES6 project for experimenting with TDD.
 
 ## License
 
