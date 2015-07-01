@@ -11,33 +11,31 @@ module FizzBuzz {
   }
 
   export class WordRule implements Rule {
-    private _word:string;
-    private _divisor:number;
+    private word:string;
+    private divisor:number;
 
     constructor(divisor:number, word:string){
-      this._divisor = divisor;
-      this._word = word;
+      this.divisor = divisor;
+      this.word = word;
     }
 
     say(n:number, s:string):string {
-      return n % this._divisor === 0 ? s + this._word : s;
+      return n % this.divisor === 0 ? s + this.word : s;
     }
 
   }
 
   export class FizzBuzzer {
-    private _rules:Rule[];
+    private rules:Rule[];
 
     constructor(rules:Rule[]) {
-      this._rules = rules;
+      this.rules = rules;
     }
 
     say(n:number) {
-      var s = '';
-      this._rules.forEach((rule) => {
-        s = rule.say(n, s);
-      })
-      return s;
+      return this.rules.reduce((s:string, rule:Rule) => {
+        return rule.say(n, s)
+      }, '');
     }
 
   }
