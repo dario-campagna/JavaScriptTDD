@@ -1,4 +1,4 @@
-import FizzBuzzer from './fizzBuzz'
+import {FizzBuzzer} from './fizzBuzz'
 
-let fizzBuzzer = new FizzBuzzer();
+let fizzBuzzer = new FizzBuzzer([]);
 console.log(fizzBuzzer.say(12));

@@ -48,13 +48,6 @@ gulp.task('build', bundle);
 b.on('update', bundle);
 b.on('log', $.util.log);
 
-// ** Linting ** //
-
-gulp.task('lint', ['lint:default']);
-gulp.task('lint:default', function () {
-
-});
-
 // ** Testing ** //
 
 gulp.task('karma', function () {
