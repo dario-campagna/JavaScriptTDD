@@ -23,6 +23,6 @@
   },
   "scripts": {
     "main": "gulp buildrun",
-    "test": "gulp build && mocha"
+    "test": "gulp karma"
   }
 }

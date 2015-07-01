@@ -6,11 +6,11 @@ describe('FizzBuzz test suite', () => {
   var rules = [
     new FizzBuzz.WordRule(3, 'Fizz'),
     new FizzBuzz.WordRule(5, 'Buzz'),
-    new FizzBuzz.DefaultRule()
+    new FizzBuzz.DefaultRule(),
   ];
   var fizzBuzzer = new FizzBuzz.FizzBuzzer(rules);
 
-  it('should return Fizz for multiples of 3', function () {
+  it('should return Fizz for multiples of 3', () => {
     expect(fizzBuzzer.say(3)).toBe('Fizz');
     expect(fizzBuzzer.say(9)).toBe('Fizz');
   });
