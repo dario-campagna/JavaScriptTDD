@@ -5,21 +5,22 @@
   "main": "app/build/index.js",
   "dependencies": {},
   "devDependencies": {
+    "babelify": "^6.1.2",
     "browserify": "^10.2.4",
     "gulp": "^3.6.2",
     "gulp-karma": "0.0.4",
+    "gulp-load-plugins": "^0.10.0",
     "gulp-shell": "^0.4.2",
-    "gulp-tsc": "^0.10.1",
-    "gulp-tslint": "^2.0.0",
-    "gulp-typescript": "^2.7.8",
+    "gulp-util": "^3.0.6",
     "karma": "^0.12.37",
     "karma-browserify": "^4.2.1",
     "karma-chrome-launcher": "^0.2.0",
     "karma-jasmine": "^0.3.6",
-    "karma-typescript-preprocessor": "0.0.19",
-    "mocha": "*",
+    "lodash.assign": "^3.2.0",
     "run-sequence": "^1.1.1",
-    "typescript": "^1.4.1"
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.3"
   },
   "scripts": {
     "main": "gulp buildrun",

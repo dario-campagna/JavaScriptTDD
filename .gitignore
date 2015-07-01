@@ -2,7 +2,3 @@
 .idea
 node_modules
 app/build
-app/src/*.js
-app/src/*.js.map
-test/**/*.spec.js
-test/**/*.spec.js.map

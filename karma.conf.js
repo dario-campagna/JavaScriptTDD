@@ -4,33 +4,22 @@ module.exports = function (config) {
     basePath: '',
 
     files: [
-      'app/**/*.ts',
-      'test/**/*.ts'
+      'app/src/app.js',
+      'test/*.js'
     ],
 
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'browserify'],
 
-    preprocessors: {
-      '**/*.ts': ['typescript']
+    browserify: {
+      debug: true,
+      transform: [
+        'babelify'
+      ]
     },
 
-    typescriptPreprocessor: {
-      // options passed to the typescript compiler
-      options: {
-        sourceMap: false, // (optional) Generates corresponding .map file.
-        target: 'ES5', // (optional) Specify ECMAScript target version: 'ES3' (default), or 'ES5'
-        module: 'commonjs', // (optional) Specify module code generation: 'commonjs' or 'amd'
-        noImplicitAny: true, // (optional) Warn on expressions and declarations with an implied 'any' type.
-        noResolve: false, // (optional) Skip resolution and preprocessing.
-        removeComments: true // (optional) Do not emit comments to output.
-      },
-      typings: [
-        './typings/jasmine/*.d.ts'
-      ],
-      // transforming the filenames
-      transformPath: function (path) {
-        return path.replace(/\.ts$/, '.js');
-      }
+    preprocessors: {
+      'app/src/**/*.js': ['browserify'],
+      'test/*.js': ['browserify']
     },
 
     reporters: ['dots'],
@@ -46,7 +35,7 @@ module.exports = function (config) {
     plugins: [
       'karma-jasmine',
       'karma-chrome-launcher',
-      'karma-typescript-preprocessor'
+      'karma-browserify'
     ]
 
   });

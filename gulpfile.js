@@ -1,12 +1,18 @@
 var gulp = require('gulp');
-var ts = require('gulp-typescript');
-var shell = require('gulp-shell');
 var runseq = require('run-sequence');
-var tslint = require('gulp-tslint');
+var browserify = require('browserify');
+var babelify = require('babelify');
+var watchify = require('watchify');
+var assign = require('lodash.assign');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var shell = require('gulp-shell');
+var $ = require('gulp-load-plugins')();
 
 var paths = {
-  tscripts: {
-    src: ['app/src/**/*.ts'],
+  scripts: {
+    src: ['app/src/app.js'],
+    map: 'app/src',
     dest: 'app/build'
   }
 };
@@ -16,44 +22,37 @@ gulp.task('default', ['lint', 'buildrun']);
 // ** Running ** //
 
 gulp.task('run', shell.task([
-  'node app/build/index.js'
+  'node app/build/app.js'
 ]));
-
-gulp.task('buildrun', function (cb) {
-  runseq('build', 'run', cb);
-});
-
-// ** Watching ** //
-
-gulp.task('watch', function () {
-  gulp.watch(paths.tscripts.src, ['compile:typescript']);
-});
-
-gulp.task('watchrun', function () {
-  gulp.watch(paths.tscripts.src, runseq('compile:typescript', 'run'));
-});
 
 // ** Compilation ** //
 
-gulp.task('build', ['compile:typescript']);
-gulp.task('compile:typescript', function () {
-  var tsResult = gulp.src(paths.tscripts.src)
-    .pipe(ts({
-      noImplicitAny: true,
-      out: 'index.js'
-    }));
-  return tsResult.js.pipe(gulp.dest(paths.tscripts.dest));
-});
+var browserifyOpts = {
+  debug: true,
+  entries: [paths.scripts.src],
+  transform: [babelify.configure({
+    sourceMapRelative: paths.scripts.map
+  })]
+};
+var opts = assign({}, watchify.args, browserifyOpts);
+var b = watchify(browserify(opts));
+
+var bundle = function () {
+  return b.bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(gulp.dest(paths.scripts.dest));
+};
+
+gulp.task('build', bundle);
+b.on('update', bundle);
+b.on('log', $.util.log);
 
 // ** Linting ** //
 
 gulp.task('lint', ['lint:default']);
 gulp.task('lint:default', function () {
-  return gulp.src(paths.tscripts.src)
-    .pipe(tslint())
-    .pipe(tslint.report('prose', {
-      emitError: false
-    }));
+
 });
 
 // ** Testing ** //
