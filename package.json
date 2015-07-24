@@ -16,8 +16,10 @@
     "karma-browserify": "^4.2.1",
     "karma-chrome-launcher": "^0.2.0",
     "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.0",
     "karma-typescript-preprocessor": "0.0.19",
     "mocha": "*",
+    "phantomjs": "^1.9.17",
     "run-sequence": "^1.1.1",
     "typescript": "^1.4.1"
   },
