@@ -25,6 +25,6 @@
   },
   "scripts": {
     "main": "gulp buildrun",
-    "test": "gulp karma"
+    "test": "karma start --browsers PhantomJS --single-run"
   }
 }
