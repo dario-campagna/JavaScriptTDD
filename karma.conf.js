@@ -39,14 +39,14 @@ module.exports = function (config) {
 
     autoWatch: false,
 
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'Firefox'],
 
     singleRun: true,
 
     plugins: [
       'karma-jasmine',
       'karma-chrome-launcher',
-      'karma-phantomjs-launcher',
+      'karma-firefox-launcher',
       'karma-typescript-preprocessor'
     ]
 
